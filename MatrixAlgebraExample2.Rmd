@@ -1,0 +1,114 @@
+---
+title: "Matrix Algebra for Factor Analysis"
+author: "Alissa McGill"
+date: "2026-09-14"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r Load all required packages, message=FALSE}
+
+# load libraries
+library(tidyr)
+library(tidyverse)
+library(dplyr)
+library(plyr)
+library(psych)
+library(ggplot2)
+library(readxl)
+library(uuid)
+library(Hmisc)
+library(stringdist)
+library(lavaan)
+
+```
+```{r stuff}
+matrix(c(5, 6, 4, 1, 8, 4), nrow = 2, 
+       ncol = 3, byrow = TRUE)
+matrix
+
+matrix(4,2,2)
+matrix
+
+R1 = matrix(c(4,-2,3,5), nrow=2,ncol=2)
+R1
+
+R2 = matrix(c(0,6,3,1), nrow=2,ncol=2)
+R2
+
+# addition of matrices R1 and R2
+sum = R1 + R2
+sum
+
+# subtraction
+difference = R1 - R2
+difference
+
+# multiplication
+product = R1*R2
+product
+
+# division
+result = R1/R2
+result
+########
+R1 <- matrix(c(10,20,20,40), 
+             ncol = 2, 
+             byrow = TRUE)
+
+# Equivalent to:
+library(Matrix)
+rankMatrix(R1)[1]
+
+#diagonal matrix
+diag(c(22,-14,56))
+
+#determinant of a matrix
+R1 <- matrix(c(3,9,7,2),
+             ncol = 2, 
+             byrow = TRUE)
+det(R1)
+
+
+#inverse of a matrix
+
+R1 <- matrix(c(19,11,2,33),
+             ncol = 2, 
+             byrow = TRUE)
+solve(R1)
+
+#transpose of a matrix
+R1 <- matrix(c(19,11,2,33),
+             ncol = 2,
+             byrow = TRUE)
+t(R1)
+
+##Eigenvalues and Eigenvectors
+#eigenvalues and eigenvectors both are calculated by using eigen() function. The eigenvalues are stored on the 
+#'values' of the list and by default it will display the decreasing order.
+#Syntax: eigen(matrix name) $values 
+#For eigenvectors, they are stored in 'vectors' of the list. 
+#Syntax: eigen(matrix name) $ vectors . 
+
+R1 <- matrix(c(19,11,2,33), 
+             ncol = 2,
+             byrow = TRUE)
+
+# show the eigen values of matrix R1
+eigen(R1)$values
+
+# show the eigen vectors of matrix R1
+eigen(R1)$vectors 
+
+#The matrix must be square for the calculation of power. 
+#Since there is no built-in function to calculate the power of the matrix. 
+#So, we can use any two of the methods, i.e., '%^%' operator of the 'expm' package and the' matrix.power' function of the 'matrixcalc' package. 
+
+
+R1 <- matrix(c(19,11,2,33),
+             ncol = 2, 
+             byrow = TRUE)
+R1^2
+
+```
