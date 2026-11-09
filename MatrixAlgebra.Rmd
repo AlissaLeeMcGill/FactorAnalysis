@@ -2,7 +2,9 @@
 title: "MatrixAlgebra"
 author: "Alissa McGill"
 date: "2026-09-21"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 editor_options:
   chunk_output_type: console
 ---
@@ -11,6 +13,7 @@ editor_options:
 
 # load libraries
 library(Matrix)
+library(haven)
 
 ```
 
@@ -122,8 +125,16 @@ q6
 
 
 # The determinant of a covariance matrix like the one we have here is "generalized variance". 
-# 
+# Its telling us how much variance there is overall on average.  
 
 
+```
+```{r Question 8, message=FALSE}
 
+dataforQ8 = read_sav("MatrixAlgebra.sav")
+regression <- lm(y ~ x1 + x2, data = dataforQ8)
+summary(regression)
+
+
+# We get the same numbers as what we did in excel!
 ```
