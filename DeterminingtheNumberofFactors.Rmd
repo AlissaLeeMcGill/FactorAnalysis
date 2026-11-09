@@ -1,0 +1,15 @@
+---
+title: "DeterminingTheNumberOfFactors"
+author: "Alissa McGill"
+date: "2026-11-09"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+
+
+
+```
+
