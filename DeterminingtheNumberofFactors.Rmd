@@ -6,10 +6,86 @@ output: html_document
 editor_options: 
   chunk_output_type: console
 ---
+ The data set for this assignment includes over 19,000 participants data on the Big 5 Personality
+inventory. The data are from several countries, and many different sources. Your assignment is to
+determine how many personality factors are represented by this inventory and provide me with all
+reasons, explanations, and data you used to determine the number of factors that underly the construct
+“personality.” This should be conducted in an exploratory fashion.
 
-```{r setup, include=FALSE}
+```{r Libraries, include=FALSE}
+
+library(haven)
+library(dplyr)
+library(psych)
+library(nFactors)
+```
+
+```{r Input data, include=FALSE}
+
+
+Big5Data = read_sav("big5data.sav")
+Big5Data  =  select(Big5Data, -c(race, age, engnat, gender, hand, source, country))
+
+```
+```{r Exploratory Factor Analysis, include=FALSE}
+
+
+#Calculates Bartlett's test
+CorBig5<-cor(Big5Data)
+cortest.bartlett(CorBig5, n=19719)
+
+#  parallel analysis
+parallelAnalysis = fa.parallel(Big5Data, fa = "fa", plot = TRUE)
+numFactors = parallelAnalysis$nfact
+
+#this parallel analysis tells me its 10 factors, i don't really think that makes a lot of sense
+
+#oblimin becasue they are probably correlated 
+
+#do the factor analysis for 1
+fitBig5_oneFac<-fa(Big5Data,nfactors = 1, rotate = "oblimin", fm = 'pa')
+#displays results
+fitBig5_oneFac
+print(fitBig5_oneFac$loadings, cutoff = 0.3, sort = TRUE)
+
+#do the factor analysis for 2
+fitBig5_twoFac<-fa(Big5Data,nfactors = 2, rotate = "oblimin", fm = 'pa')
+fitBig5_twoFac
+print(fitBig5_twoFac$loadings, cutoff = 0.3, sort = TRUE)
+
+#do the factor analysis for 3
+fitBig5_threeFac<-fa(Big5Data,nfactors = 3, rotate = "oblimin", fm = 'pa')
+fitBig5_threeFac
+print(fitBig5_threeFac$loadings, cutoff = 0.3, sort = TRUE)
+
+#do the factor analysis for 4
+fitBig5_fourFac<-fa(Big5Data,nfactors = 4, rotate = "oblimin", fm = 'pa')
+fitBig5_fourFac
+print(fitBig5_fourFac$loadings, cutoff = 0.3, sort = FALSE)
+
+
+#do the factor analysis for 5
+fitBig5_fiveFac<-fa(Big5Data,nfactors = 5, rotate = "oblimin", fm = 'pa')
+fitBig5_fiveFac
+print(fitBig5_fiveFac$loadings, cutoff = 0.3, sort = FALSE)
+
+#do the factor analysis for 6
+fitBig5_sixFac<-fa(Big5Data,nfactors = 6, rotate = "oblimin", fm = 'pa')
+fitBig5_sixFac
+print(fitBig5_sixFac$loadings, cutoff = 0.3, sort = FALSE)
+
+
+#do the factor analysis for 7
+fitBig5_sevFac<-fa(Big5Data,nfactors = 7, rotate = "oblimin", fm = 'pa')
+fitBig5_sevFac
+print(fitBig5_sevFac$loadings, cutoff = 0.3, sort = TRUE)
+
+
+#do the factor analysis for 10
+fitBig5_tenFac<-fa(Big5Data,nfactors = 10, rotate = "oblimin", fm = 'pa')
+fitBig5_tenFac
+print(fitBig5_tenFac$loadings, cutoff = 0.3, sort = FALSE)
 
 
 
 ```
-
